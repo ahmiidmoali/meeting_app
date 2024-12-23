@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:meeting_app/features/app/theme/app_images.dart';
 import 'package:meeting_app/features/app/theme/style.dart';
-import 'package:meeting_app/features/home/presentation/widgets/custom_join_create_button.dart';
-import 'package:meeting_app/features/home/presentation/widgets/custom_swipe_button.dart';
-import 'package:meeting_app/features/home/presentation/widgets/custom_text_form_field_join_code.dart';
+import 'package:meeting_app/features/meeting/presentation/widgets/custom_join_create_button.dart';
+import 'package:meeting_app/features/meeting/presentation/widgets/custom_swipe_button.dart';
+import 'package:meeting_app/features/meeting/presentation/widgets/custom_text_form_field_join_code.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});

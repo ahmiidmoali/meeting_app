@@ -98,7 +98,7 @@ class _CustomScheduleMaterialButton extends StatelessWidget {
 
 class _CustomScheduleSmallText extends StatelessWidget {
   final String text;
-  const _CustomScheduleSmallText({super.key, required this.text});
+  const _CustomScheduleSmallText({required this.text});
 
   @override
   Widget build(BuildContext context) {

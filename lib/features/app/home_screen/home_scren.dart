@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:meeting_app/features/history/presentation/pages/history_page.dart';
-import 'package:meeting_app/features/home/presentation/pages/home_page.dart';
+import 'package:meeting_app/features/meeting/presentation/pages/home_page.dart';
 import 'package:meeting_app/features/schedule/presentation/pages/schedule_page.dart';
 
 class HomeScreen extends StatefulWidget {
