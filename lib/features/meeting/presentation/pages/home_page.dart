@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:meeting_app/features/app/theme/app_images.dart';
+import 'package:meeting_app/features/app/const/app_images_const.dart';
 import 'package:meeting_app/features/app/theme/style.dart';
+import 'package:meeting_app/features/meeting/presentation/pages/meeting_page.dart';
 import 'package:meeting_app/features/meeting/presentation/widgets/custom_join_create_button.dart';
 import 'package:meeting_app/features/meeting/presentation/widgets/custom_swipe_button.dart';
 import 'package:meeting_app/features/meeting/presentation/widgets/custom_text_form_field_join_code.dart';
@@ -43,7 +44,7 @@ class _HomePageState extends State<HomePage> {
                       bottomRight: Radius.circular(12))),
               child: Image.asset(
                 alignment: Alignment.center,
-                AppImages.letstalkImage,
+                AppImagesConst.letstalkImage,
                 height: 300,
                 width: 300,
               ),
@@ -68,7 +69,9 @@ class _HomePageState extends State<HomePage> {
             ),
             CustomSwipeButton(
               onSwipe: () {
-                print(joinMeeting);
+                Navigator.of(context).push(MaterialPageRoute(
+                  builder: (context) => MeetingPage(),
+                ));
               },
             )
           ],

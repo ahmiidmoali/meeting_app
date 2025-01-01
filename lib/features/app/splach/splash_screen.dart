@@ -1,7 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:meeting_app/features/app/theme/app_images.dart';
+import 'package:meeting_app/features/app/const/app_images_const.dart';
 import 'package:meeting_app/features/app/theme/style.dart';
 import 'package:meeting_app/features/app/welcome/pages/welcome_page.dart';
 
@@ -41,7 +41,7 @@ class _SplashScreenState extends State<SplashScreen> {
         children: [
           Container(),
           Image.asset(
-            AppImages.appIcon,
+            AppImagesConst.appIcon,
             color: AppColors.textColorIn,
             height: 300,
             width: 300,

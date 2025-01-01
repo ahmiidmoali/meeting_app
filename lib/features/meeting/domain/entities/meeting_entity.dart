@@ -9,21 +9,24 @@ class MeetingEntity extends Equatable {
   final String? memberId;
   final String? memberName;
   final String? memberProfileUrl;
-  final bool? isMeetingStarted;
+  final String? isMeetingStarted;
+  final String? isMeetingEnded;
   final String? createdAt;
   final String? endedAt;
 
   const MeetingEntity(
-      this.meetingId,
-      this.adminId,
-      this.adminName,
-      this.adminProfileUrl,
-      this.memberId,
-      this.memberName,
-      this.memberProfileUrl,
-      this.isMeetingStarted,
-      this.createdAt,
-      this.endedAt);
+    this.meetingId,
+    this.adminId,
+    this.adminName,
+    this.adminProfileUrl,
+    this.memberId,
+    this.memberName,
+    this.memberProfileUrl,
+    this.isMeetingStarted,
+    this.isMeetingEnded,
+    this.createdAt,
+    this.endedAt,
+  );
 
   @override
   List<Object?> get props => [
@@ -34,6 +37,7 @@ class MeetingEntity extends Equatable {
         memberId,
         memberName,
         memberProfileUrl,
+        isMeetingStarted,
         isMeetingStarted,
         createdAt,
         endedAt

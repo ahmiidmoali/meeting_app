@@ -21,4 +21,8 @@ class MeetingRepositpryImp extends MeetingRepository {
   @override
   Future<void> startMeeting(MeetingEntity meeting) async =>
       remoteDataSource.startMeeting(meeting);
+
+  @override
+  Future<void> createMeeting(MeetingEntity meeting) async =>
+      remoteDataSource.createMeeting(meeting);
 }
