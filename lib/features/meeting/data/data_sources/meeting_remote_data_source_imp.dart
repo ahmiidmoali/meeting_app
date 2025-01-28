@@ -3,17 +3,19 @@ import 'package:meeting_app/features/app/services/network_services.dart';
 import 'package:meeting_app/features/meeting/data/data_sources/meeting_remote_data_source.dart';
 import 'package:meeting_app/features/meeting/data/models/meeting_model.dart';
 import 'package:meeting_app/features/meeting/domain/entities/meeting_entity.dart';
-//  import 'package:uuid/uuid.dart';
+import 'package:uuid/uuid.dart';
 
 class MeetingRemoteDataSourceImp extends MeetingRemoteDataSource {
   final NetworkServices networkServices;
+  final String uid;
 
-  MeetingRemoteDataSourceImp({required this.networkServices});
+  MeetingRemoteDataSourceImp(
+      {required this.networkServices, required this.uid});
   @override
   Future<RequestResult> createMeeting(MeetingEntity meeting) async {
-    // String meetingId = Uuid().v1();
+    String meetingId = Uuid().v1();
     final adminData = MeetingModel(
-      meetingId: meeting.meetingId,
+      meetingId: meetingId,
       adminId: meeting.adminId,
       adminName: meeting.adminName,
       adminProfileUrl: meeting.adminProfileUrl,
@@ -29,7 +31,6 @@ class MeetingRemoteDataSourceImp extends MeetingRemoteDataSource {
 
   @override
   Future<RequestResult> startMeeting(MeetingEntity meeting) async {
-    // String meetingId = Uuid().v1();
     final adminData = MeetingModel(
       meetingId: meeting.meetingId,
     ).toJson();
@@ -43,9 +44,27 @@ class MeetingRemoteDataSourceImp extends MeetingRemoteDataSource {
   }
 
   @override
-  Future<void> endMeeting(MeetingEntity meeting) {
-    // TODO: implement endMeeting
-    throw UnimplementedError();
+  Future<RequestResult> endMeeting(MeetingEntity meeting) async {
+    final adminData = {
+      "meetingAdminId": meeting.adminId,
+      "meetingMemberId": meeting.memberId,
+      "meetingMemberName": meeting.memberName,
+      "meetingMemberProfileUrl": meeting.memberProfileUrl,
+      "historyMeetingId": meeting.meetingId,
+      "historyUserId": uid,
+      "historyMeetingCreatedAt": meeting.createdAt,
+      "historyMeetingEndedAt": DateTime.now().toString(),
+      "historyOtherUserId":
+          uid == meeting.adminId ? meeting.memberId : meeting.adminId,
+      "historyMeetingDisc": "",
+    };
+
+    try {
+      return await networkServices.postCheckSuccess(
+          link: AppLinkConst.endMeeting, body: adminData);
+    } catch (e) {
+      return RequestResult.failure;
+    }
   }
 
   @override
@@ -55,8 +74,19 @@ class MeetingRemoteDataSourceImp extends MeetingRemoteDataSource {
   }
 
   @override
-  Future<void> saveMeetingHistory(MeetingEntity meeting) {
-    // TODO: implement saveMeetingHistory
-    throw UnimplementedError();
+  Future<RequestResult> joinMeeting(MeetingEntity meeting) async {
+    final adminData = MeetingModel(
+            meetingId: meeting.meetingId,
+            memberId: meeting.memberId,
+            memberName: meeting.memberName,
+            memberProfileUrl: meeting.memberProfileUrl)
+        .toJson();
+
+    try {
+      return await networkServices.postCheckSuccess(
+          link: AppLinkConst.joinMeeting, body: adminData);
+    } catch (e) {
+      return RequestResult.failure;
+    }
   }
 }

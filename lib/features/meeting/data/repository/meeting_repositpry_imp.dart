@@ -1,3 +1,4 @@
+import 'package:meeting_app/features/app/services/network_services.dart';
 import 'package:meeting_app/features/meeting/data/data_sources/meeting_remote_data_source.dart';
 import 'package:meeting_app/features/meeting/domain/entities/meeting_entity.dart';
 import 'package:meeting_app/features/meeting/domain/repository/meeting_repository.dart';
@@ -7,7 +8,7 @@ class MeetingRepositpryImp extends MeetingRepository {
 
   MeetingRepositpryImp({required this.remoteDataSource});
   @override
-  Future<void> endMeeting(MeetingEntity meeting) async =>
+  Future<RequestResult> endMeeting(MeetingEntity meeting) async =>
       remoteDataSource.endMeeting(meeting);
 
   @override
@@ -15,14 +16,14 @@ class MeetingRepositpryImp extends MeetingRepository {
       remoteDataSource.getMeetingChannelId(id);
 
   @override
-  Future<void> saveMeetingHistory(MeetingEntity meeting) =>
-      remoteDataSource.saveMeetingHistory(meeting);
+  Future<RequestResult> joinMeeting(MeetingEntity meeting) =>
+      remoteDataSource.joinMeeting(meeting);
 
   @override
-  Future<void> startMeeting(MeetingEntity meeting) async =>
+  Future<RequestResult> startMeeting(MeetingEntity meeting) async =>
       remoteDataSource.startMeeting(meeting);
 
   @override
-  Future<void> createMeeting(MeetingEntity meeting) async =>
+  Future<RequestResult> createMeeting(MeetingEntity meeting) async =>
       remoteDataSource.createMeeting(meeting);
 }
